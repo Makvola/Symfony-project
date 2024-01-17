@@ -106,6 +106,12 @@ ________________________________________________________________________________
       ____________________________________________________________________________________________________________________________
        	  	 
       33 	ajout d'une gestion de marque-pages/panier dans le front-office                                      Non Fait
+
+Testez que l'application Symfony se lance :
+
+rm -fr composer.lock symfony.lock vendor/ var/cache/ .project
+symfony composer install
+symfony server:start
  
   
   
