@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Member n° {{ membre.id }} collections{% endblock %}
+
+{% block body %}
+  {% if membre.user == app.user %}
+    <h3>{{ membre.nomMembre }} , Bienvenue dans votre espace personnel !</h3>
+    <br>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Vos Collections</th>
+          <th>Vos Expositions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {% if membre.collection is not empty %}
+              <ul>
+                {% for collection in membre.collection %}
+                  <li><a href="{{ path('collection_show', {'id': collection.id}) }}">{{ collection.nomCollect }}</a></li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <td colspan="1">No records found</td>
+            {% endif %}
+          </td>
+          <td>
+            {% if membre.expos is not empty %}
+              <ul>
+                {% for expo in membre.expos %}
+                  <li><a href="{{ path('app_expo_show', {'id': expo.id}) }}">{{ expo.descriptExpo }}</a></li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <td colspan="1">No records found</td>
+            {% endif %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <a href="{{ path('app_macollection_new', {'id': membre.id}) }}">Ajouter une nouvelle collection</a><br>
+    <a href="{{ path('app_expo_new', {'id': membre.id}) }}">Ajouter une nouvelle exposition</a>
+
+  {% else %}
+    <td colspan="1">Vous n'etes pas autorisé à accéder à l'espace personnel de {{ membre.nomMembre }}</td>
+  {% endif %}
+  <p><a href="{{ path('app_member') }}">Retour vers la liste des membres</a></p>
+{% endblock %}
+

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}expo index{% endblock %}
+
+{% block body %}
+    <h1>Expositions</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Publiée</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for expo in expos %}
+            <tr>
+                <td>{{ expo.id }}</td>
+                <td>{{ expo.descriptExpo }}</td>
+                <td>{{ expo.publiee ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_expo_show', {'id': expo.id}) }}">show</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

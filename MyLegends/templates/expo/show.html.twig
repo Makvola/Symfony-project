@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Exposition {{ expo.descriptExpo }}{% endblock %}
+
+{% block body %}
+    <h3>Exposition {{ expo.descriptExpo }}</h3>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ expo.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ expo.descriptExpo }}</td>
+            </tr>
+            <tr>
+                <th>Publiée</th>
+                <td>{{ expo.publiee ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Cartes</th>
+                <td>
+                    {% if expo.cartes is not empty %}
+                        <ul>
+                            {% for carte in expo.cartes %}
+                                <li><a href="{{ path('app_expo_carte_show', {'expo_id': expo.id, 'carte_id' : carte.id}) }}">{{ carte.nomJoueur }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        No records found
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h6>Propriétaire de l'exposition : {{ expo.createur.nomMembre }}</h6>
+
+    <a href="{{ path('app_expo_index') }}">Retour à la liste</a><br>
+    
+    {% if is_granted('ROLE_USER') %}
+        <a href="{{ path('app_expo_edit', {'id': expo.id}) }}">Modifier</a> 
+        {{ include('expo/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}
+

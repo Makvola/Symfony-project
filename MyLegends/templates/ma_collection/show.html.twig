@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}COLLECTION n° {{ MaCollection.id }} details{% endblock %}
+
+{% block body %}
+    <h3>Collection Details : {{ MaCollection.nomCollect }}</h3>
+    <h4>Description : {{ MaCollection.DescriptCollect }}</h4>
+    <table class="table">
+    <thead>
+          <tr>
+              <th>Cartes présentes</th>
+              <th>actions</th>
+         </tr>
+    </thead>
+    <tbody>
+        {% for Carte in MaCollection.relation %}
+            <tr>
+                <td>{{ Carte.nomJoueur }}</td>
+                <td>
+                    <a href="{{ path('carte_show', {'id': Carte.id}) }}">Voir</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <h6>Proprietaire de la collection: {{ MaCollection.member.nomMembre }}</h6>
+    <a href="{{ path('app_carte_new', {'id': MaCollection.id}) }}">Ajouter une nouvelle carte</a><br>
+    <a href="{{ path('member_show', {'id': MaCollection.member.id}) }}">Retour</a>
+
+    {# <p><a href="{{ path('collection_list') }}">Retour vers la liste de collections</a></p> #}
+{% endblock %} 
+

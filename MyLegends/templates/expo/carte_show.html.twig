@@ -1,0 +1,30 @@
+ {% extends 'base.html.twig' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>carte n° {{ carte.id }} details</title>
+    </head>
+    <body>
+        <h2>Les détails de la Carte :</h2>
+        <ul>
+            <dl>
+                <dt>Nom du Joueur</dt>
+                <dd>{{ carte.nomJoueur }}</dd>
+                <dt>Pays </dt>
+                <dd>{{ carte.pays }}</dd>
+                <dt>Poste </dt>
+                <dd>{{ carte.poste }}</dd>
+                <dt>Collection</dt>
+                <dd>{{ carte.maCollection.nomCollect }}</dd>
+                <dt>Propriétaire de la Collection</dt>
+                <dd>{{ carte.maCollection.member.nomMembre }}</dd>
+            </dl>
+        </ul>
+    </body>
+     <a href="{{ path('app_expo_show', { 'id': expo.id}) }}">back to exposition</a>
+</html>
+{% endblock %}
+

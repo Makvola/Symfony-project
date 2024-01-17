@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Card{% endblock %}
+
+{% block body %}
+    <h1>Edit Card</h1>
+
+    {{ include('carte_joueur/_form.html.twig', {'button_label': 'Update'}) }}
+
+   <br>
+
+    {{ include('carte_joueur/_delete_form.html.twig') }}
+{% endblock %}

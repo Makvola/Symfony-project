@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}collection{% endblock %}
+
+{% block body %}
+    <h1>Listes des collections</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Collection</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for macollection in macollections %}
+            <tr>
+                <td>{{ macollection.id }}</td>
+                <td>{{ macollection.nomCollect}}</td>
+                <td>{{ macollection.descriptCollect }}</td>
+                <td>
+                    <a href="{{ path('collection_show', {'id': macollection.id}) }}">Show</a>
+                    <a href="{{ path('app_macollection_edit', {'id': macollection.id}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

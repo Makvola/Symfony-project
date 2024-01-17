@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>CARTE n° {{ Carte.id }} details</title>
+    </head>
+    <body>
+        <h2>Carte Details :</h2>
+        <ul>
+            <dl>
+                <dt>Nom du Joueur</dt>
+                <dd>{{ Carte.nomJoueur }}</dd>
+                <dt>Pays </dt>
+                <dd>{{ Carte.pays }}</dd>
+                <dt>Poste </dt>
+                <dd>{{ Carte.poste }}</dd>
+                <dt>Collection</dt>
+                <dd>{{ Carte.maCollection.nomCollect }}
+                    <em><p><a href="{{ path('collection_show', {'id': Carte.maCollection.id}) }}">Aller vers la collection</a></p></em>
+                </dd>
+                <dt>Propriétaire de la Collection</dt>
+                <dd>{{ Carte.maCollection.member.nomMembre }}</dd>
+            </dl>
+        </ul>
+        <a href="{{ path('app_carte_edit', {'id': Carte.id}) }}">Edit card</a><br>
+    </body>
+</html>
+{% endblock %}
+
+
